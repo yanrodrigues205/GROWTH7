@@ -43,3 +43,45 @@ function ordena_data_maxima(trabalhos)
       new Date(a["Data Máxima de conclusão"]) - new Date(b["Data Máxima de conclusão"])
     );
 }
+
+
+function ordenar_trabalhos(trabalhos) {
+    const trabalhos_array = [];
+    let trabalhos_subarray = [];
+    let duracao = 0;
+  
+    for (const trabalho of trabalhos) {
+      const tempo_estimado = parseInt(trabalho["Tempo estimado"]);
+  
+      if (duracao + tempo_estimado <= 8) 
+      {
+        trabalhos_subarray.push(trabalho);
+        duracao += tempo_estimado;
+      } 
+      else 
+      {
+        trabalhos_array.push(trabalhos_subarray);
+        trabalhos_subarray = [trabalho];
+        duracao = tempo_estimado;
+      }
+    }
+  
+    if (trabalhos_subarray.length > 0)
+    {
+      trabalhos_array.push(trabalhos_subarray);
+    }
+  
+    return trabalhos_array;
+  }
+  
+  function main(trabalho)
+  {
+
+    const ordena_data = ordena_data_maxima(trabalho);
+    const ordena_trabalho = ordenar_trabalhos(ordena_data);
+    return ordena_trabalho;
+
+  }
+
+  const resposta = main(trabalhos);
+  console.log(resposta);
