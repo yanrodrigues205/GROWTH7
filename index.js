@@ -34,7 +34,7 @@ const trabalhos = [
 		"Descrição": 'Importação de dados de integração', 
 		"Data Máxima de conclusão": '2020-02-15 12:00:00', 
 		"Tempo estimado": '8 horas'
-	},
+	}
 ];
 
 function ordena_data_maxima(trabalhos)
